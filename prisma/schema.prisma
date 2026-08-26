@@ -12,9 +12,9 @@ model Product {
   name        String
   slug        String      @unique
   description String
-  price       Int         // store in cents to avoid float rounding issues
+  price       Int
   imageUrl    String
-  scentNotes  String[]    // e.g. ["vanilla", "sandalwood", "citrus"]
+  scentNotes  String[]
   stock       Int         @default(0)
   createdAt   DateTime    @default(now())
   updatedAt   DateTime    @updatedAt
@@ -26,7 +26,7 @@ model Order {
   customerEmail   String
   customerName    String
   status          OrderStatus @default(PENDING)
-  totalAmount     Int         // cents
+  totalAmount     Int
   stripeSessionId String?     @unique
   shippingAddress String
   createdAt       DateTime    @default(now())
@@ -36,12 +36,12 @@ model Order {
 
 model OrderItem {
   id        String  @id @default(cuid())
-  order     Order   @relation(fields: [orderId], references: [id])
   orderId   String
-  product   Product @relation(fields: [productId], references: [id])
   productId String
   quantity  Int
-  price     Int     // price at time of purchase, in cents
+  price     Int
+  order     Order   @relation(fields: [orderId], references: [id])
+  product   Product @relation(fields: [productId], references: [id])
 }
 
 enum OrderStatus {
