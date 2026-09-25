@@ -1,26 +1,136 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
+  --font-sans: var(--font-work-sans);
+  --font-serif: var(--font-cormorant);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-card: var(--card);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-border: var(--border);
+  --color-rust: var(--rust);
+  --color-rust-bright: var(--rust-bright);
+  --color-ember: var(--ember);
+  --color-ink: var(--ink);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root {
+  --background: oklch(0.095 0.012 45);
+  --foreground: oklch(0.91 0.025 76);
+  --card: oklch(0.14 0.017 39);
+  --primary: oklch(0.76 0.105 76);
+  --primary-foreground: oklch(0.11 0.014 43);
+  --muted: oklch(0.18 0.018 41);
+  --muted-foreground: oklch(0.64 0.035 71);
+  --accent: oklch(0.24 0.04 36);
+  --border: oklch(0.36 0.04 56 / 45%);
+  --rust: oklch(0.46 0.13 34);
+  --rust-bright: oklch(0.54 0.15 35);
+  --ember: oklch(0.24 0.06 35);
+  --ink: oklch(0.07 0.008 46);
+}
+
+* {
+  border-color: var(--border);
+}
+
+html {
+  background: var(--background);
+  scroll-behavior: smooth;
 }
 
 body {
+  min-height: 100vh;
+  overflow-x: hidden;
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-work-sans), sans-serif;
+}
+
+::selection {
+  background: var(--rust);
+  color: var(--foreground);
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.eyebrow {
+  color: var(--primary);
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.section-shell {
+  margin-inline: auto;
+  max-width: 80rem;
+  padding-inline: 1.5rem;
+  width: 100%;
+}
+
+.spotlight-backdrop {
+  background:
+    radial-gradient(circle at 50% 34%, color-mix(in oklab, var(--primary) 22%, transparent) 0%, transparent 28%),
+    linear-gradient(180deg, var(--background), var(--ink));
+}
+
+.product-image-wrap {
+  background:
+    radial-gradient(circle at 50% 38%, color-mix(in oklab, var(--primary) 12%, transparent), transparent 46%),
+    var(--card);
+}
+
+.image-vignette::after {
+  background: linear-gradient(180deg, color-mix(in oklab, var(--ink) 22%, transparent), transparent 44%, var(--ink) 92%);
+  content: "";
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+}
+
+.starfield {
+  background-image:
+    radial-gradient(circle at 14% 23%, var(--primary) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 72% 17%, var(--foreground) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 38% 72%, var(--primary) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 88% 66%, var(--foreground) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 58% 43%, var(--primary) 0 0.8px, transparent 1.2px);
+  background-size: 220px 240px, 310px 280px, 270px 330px, 390px 260px, 190px 210px;
+  opacity: 0.42;
+}
+
+.intro-moon {
+  background: radial-gradient(circle at 35% 32%, var(--foreground), var(--primary) 44%, oklch(0.38 0.055 63));
+  box-shadow: 0 0 70px color-mix(in oklab, var(--primary) 35%, transparent);
+}
+
+.logo-invert {
+  filter: invert(1) sepia(0.25);
+  mix-blend-mode: screen;
+}
+
+@media (min-width: 768px) {
+  .section-shell {
+    padding-inline: 2rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
 }

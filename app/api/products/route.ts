@@ -25,14 +25,28 @@ const formatZodError = (error: z.ZodError) =>
     message: issue.message,
   }));
 
-export async function GET() {
+export async function GET(request: Request) {
+  const rateLimit = await checkRateLimit({
+    limit: 120,
+    namespace: "products-read",
+    request,
+    window: "1 m",
+  });
+
+  if (!rateLimit.success) {
+    return rateLimit.response;
+  }
+
   const products = await prisma.product.findMany({
     orderBy: {
       createdAt: "desc",
     },
   });
 
-  return NextResponse.json({ products });
+  return NextResponse.json(
+    { products },
+    { headers: rateLimit.headers },
+  );
 }
 
 export async function POST(request: Request) {
@@ -73,7 +87,10 @@ export async function POST(request: Request) {
       data: parsed.data,
     });
 
-    return NextResponse.json({ product }, { status: 201 });
+    return NextResponse.json(
+      { product },
+      { status: 201, headers: rateLimit.headers },
+    );
   } catch (error) {
     if (
       typeof error === "object" &&
