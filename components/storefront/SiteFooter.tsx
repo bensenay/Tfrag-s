@@ -13,21 +13,18 @@ export function SiteFooter() {
         <div>
           <p className="eyebrow">Explore</p>
           <div className="mt-5 flex flex-col gap-3 text-sm text-muted-foreground">
-            <Link href="/shop">The collection</Link>
+            <Link href="/#collection">The collection</Link>
             <Link href="/#house">The house</Link>
           </div>
         </div>
         <div>
-          <p className="eyebrow">Private notes</p>
-          <div className="mt-5 flex border-b border-border pb-2">
-            <input
-              aria-label="Email address"
-              type="email"
-              placeholder="EMAIL ADDRESS"
-              className="min-w-0 flex-1 bg-transparent text-[10px] tracking-[0.18em] outline-none placeholder:text-muted-foreground"
-            />
-            <button type="button" className="text-primary" aria-label="Join mailing list">→</button>
-          </div>
+          <p className="eyebrow">Contact us</p>
+          <a
+            className="mt-5 inline-block border-b border-border pb-2 text-sm text-muted-foreground transition-colors hover:text-primary"
+            href="mailto:contact@houseofpolaris.com"
+          >
+            contact@houseofpolaris.com
+          </a>
         </div>
       </div>
       <div className="mx-auto mt-20 flex max-w-7xl flex-col justify-between gap-3 text-[9px] uppercase tracking-[0.25em] text-muted-foreground md:flex-row">

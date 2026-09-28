@@ -9,7 +9,7 @@ async function main() {
       name: 'Bear Hug',
       slug: 'bear-hug',
       description: 'A warm embrace beneath a wide-open night sky, where glowing amber, soft woods, and vanilla settle close to the skin.',
-      price: 15000, // CAD $150.00 in cents
+      price: 18500, // CAD $185.00 in cents
       imageUrl: '/images/bear-hug.png',
       scentNotes: ['golden amber', 'vanilla suede', 'cedarwood'],
       stock: 25,
@@ -19,7 +19,7 @@ async function main() {
       name: 'Cloak & Dagger',
       slug: 'cloak-and-dagger',
       description: 'A shadowy trail through moonlit pines, sharpened with black pepper and wrapped in smoke, leather, and quiet intrigue.',
-      price: 15000,
+      price: 18500,
       imageUrl: '/images/cloak-and-dagger.png',
       scentNotes: ['black pepper', 'pine smoke', 'worn leather'],
       stock: 40,
@@ -29,7 +29,7 @@ async function main() {
       name: 'The Palace in the Meadow',
       slug: 'the-palace-in-the-meadow',
       description: 'A sunlit mirage on the prairie, blooming with wildflowers, warm hay, and luminous musk beneath a celestial blue sky.',
-      price: 15000,
+      price: 18500,
       imageUrl: '/images/the-palace-in-the-meadow.png',
       scentNotes: ['prairie wildflowers', 'sun-warmed hay', 'white musk'],
       stock: 15,
