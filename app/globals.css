@@ -115,11 +115,6 @@ a {
   opacity: 0.88;
 }
 
-.intro-moon {
-  background: radial-gradient(circle at 35% 32%, var(--foreground), var(--primary) 44%, oklch(0.38 0.055 63));
-  box-shadow: 0 0 70px color-mix(in oklab, var(--primary) 35%, transparent);
-}
-
 .intro-horizon {
   background:
     radial-gradient(ellipse at 50% 100%, color-mix(in oklab, var(--rust) 18%, transparent), transparent 52%),

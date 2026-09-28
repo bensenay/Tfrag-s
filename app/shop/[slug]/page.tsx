@@ -3,7 +3,6 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { AddToCartButton } from "@/components/storefront/AddToCartButton";
 import { Reveal } from "@/components/storefront/Reveal";
-import { formatCad } from "@/lib/format";
 import { prisma } from "@/lib/prisma";
 import { getProductVisual } from "@/lib/productVisuals";
 
@@ -38,11 +37,10 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
           src={visual.scene}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/10 to-background/20 md:bg-gradient-to-r md:from-background/80 md:via-background/10 md:to-background/35" />
-        <div className="section-shell relative z-10 flex min-h-screen min-w-0 items-end pb-14 pt-32 md:items-center md:pb-0">
+        <div className="section-shell relative z-10 flex min-h-screen min-w-0 items-end pb-16 pt-32 md:pb-20">
           <Reveal className="min-w-0 max-w-xl">
             <p className="eyebrow">{visual.eyebrow}</p>
             <h1 className="mt-5 max-w-2xl break-words font-serif text-5xl leading-[0.9] sm:text-6xl md:text-8xl">{product.name}</h1>
-            <p className="mt-5 text-sm text-primary">{formatCad(product.price)} CAD</p>
           </Reveal>
         </div>
       </section>
