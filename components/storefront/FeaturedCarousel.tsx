@@ -42,19 +42,10 @@ export function FeaturedCarousel({ products }: { products: FeaturedProduct[] }) 
           >
             <Image
               fill
-              unoptimized
-              alt=""
-              aria-hidden="true"
-              className="scale-110 object-cover object-center opacity-80 blur-2xl"
-              sizes="100vw"
-              src={product.scene}
-            />
-            <Image
-              fill
               priority={activeIndex === 0}
               unoptimized
               alt={product.imageAlt}
-              className="object-contain object-center"
+              className="object-cover object-center"
               sizes="100vw"
               src={product.scene}
             />

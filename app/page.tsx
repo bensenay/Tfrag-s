@@ -49,20 +49,10 @@ export default async function HomePage() {
           fill
           priority
           unoptimized
-          alt=""
-          aria-hidden="true"
-          className="scale-110 object-cover object-center opacity-80 blur-2xl"
-          sizes="100vw"
-          src="/images/collection-trio.png"
-        />
-        <Image
-          fill
-          priority
-          unoptimized
           alt="The House of Polaris fragrance collection in golden light"
-          className="object-contain object-center"
+          className="object-cover object-center"
           sizes="100vw"
-          src="/images/collection-trio.png"
+          src="/images/collection-trio-wide.png"
         />
         <div className="absolute inset-0 bg-background/20" />
         <div className="relative z-10 flex min-h-[92svh] flex-col items-center justify-center px-6 pt-20 text-center">
@@ -94,8 +84,7 @@ export default async function HomePage() {
 
       <section className="grid min-h-[75svh] md:grid-cols-2">
         <div className="relative min-h-[60svh] overflow-hidden bg-ink">
-          <Image fill unoptimized alt="" aria-hidden="true" className="scale-110 object-cover opacity-75 blur-2xl" sizes="(min-width: 768px) 50vw, 100vw" src="/images/collection-flatlay.png" />
-          <Image fill unoptimized alt="House of Polaris bottles arranged on carved wood" className="object-contain" sizes="(min-width: 768px) 50vw, 100vw" src="/images/collection-flatlay.png" />
+          <Image fill unoptimized alt="House of Polaris bottles arranged on carved wood" className="object-cover object-center" sizes="(min-width: 768px) 50vw, 100vw" src="/images/collection-flatlay-wide.png" />
         </div>
         <div className="flex items-center bg-ember px-7 py-20 md:px-16">
           <Reveal className="max-w-lg">

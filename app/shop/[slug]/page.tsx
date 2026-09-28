@@ -32,18 +32,8 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
           fill
           priority
           unoptimized
-          alt=""
-          aria-hidden="true"
-          className="scale-110 object-cover object-center opacity-80 blur-2xl"
-          sizes="100vw"
-          src={visual.scene}
-        />
-        <Image
-          fill
-          priority
-          unoptimized
           alt={visual.alt}
-          className="object-contain object-center"
+          className="object-cover object-center"
           sizes="100vw"
           src={visual.scene}
         />
@@ -53,8 +43,6 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
             <p className="eyebrow">{visual.eyebrow}</p>
             <h1 className="mt-5 max-w-2xl break-words font-serif text-5xl leading-[0.9] sm:text-6xl md:text-8xl">{product.name}</h1>
             <p className="mt-5 text-sm text-primary">{formatCad(product.price)} CAD</p>
-            <p className="mt-7 max-w-md text-sm leading-7 text-foreground/80">{product.description}</p>
-            <AddToCartButton productId={product.id} price={product.price} stock={product.stock} />
           </Reveal>
         </div>
       </section>
@@ -70,6 +58,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
             <p className="eyebrow">The story</p>
             <h2 className="mt-6 font-serif text-4xl sm:text-5xl md:text-7xl">A world held close.</h2>
             <p className="mt-7 text-sm leading-8 text-muted-foreground">{product.description}</p>
+            <AddToCartButton productId={product.id} price={product.price} stock={product.stock} />
             <div className="mt-12 divide-y divide-border border-y border-border">
               {product.scentNotes.map((note, index) => (
                 <div key={note} className="flex justify-between gap-5 py-5">
