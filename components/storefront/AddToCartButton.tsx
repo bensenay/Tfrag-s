@@ -20,7 +20,7 @@ export function AddToCartButton({
   return (
     <button
       type="button"
-      className={`${primaryButtonClass} mt-9 w-full sm:w-auto`}
+      className={`${primaryButtonClass} mt-9 max-w-full whitespace-normal px-4 text-center sm:w-auto sm:px-7`}
       disabled={stock === 0}
       onClick={() => {
         add(productId);

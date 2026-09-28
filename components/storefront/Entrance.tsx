@@ -119,6 +119,7 @@ export function Entrance() {
           >
             <Image
               priority
+              unoptimized
               alt=""
               aria-hidden="true"
               className="logo-invert h-auto w-full"
@@ -142,6 +143,7 @@ export function Entrance() {
           >
             <Image
               priority
+              unoptimized
               alt="House of Polaris"
               className="logo-invert h-auto w-full"
               height={2232}

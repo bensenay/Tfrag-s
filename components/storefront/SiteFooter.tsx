@@ -20,7 +20,7 @@ export function SiteFooter() {
         <div>
           <p className="eyebrow">Contact us</p>
           <a
-            className="mt-5 inline-block border-b border-border pb-2 text-sm text-muted-foreground transition-colors hover:text-primary"
+            className="mt-5 inline-block max-w-full break-all border-b border-border pb-2 text-sm text-muted-foreground transition-colors hover:text-primary"
             href="mailto:contact@houseofpolaris.com"
           >
             contact@houseofpolaris.com

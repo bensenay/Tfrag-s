@@ -43,29 +43,31 @@ export default async function HomePage() {
   });
 
   return (
-    <div>
+    <div className="min-w-0 max-w-full overflow-x-clip">
       <section id="top" className="image-vignette relative min-h-[92svh] overflow-hidden bg-ink">
         <Image
           fill
           priority
+          unoptimized
           alt=""
           aria-hidden="true"
-          className="scale-110 object-cover opacity-35 blur-2xl"
+          className="scale-110 object-cover object-center opacity-80 blur-2xl"
           sizes="100vw"
           src="/images/collection-trio.png"
         />
         <Image
           fill
           priority
+          unoptimized
           alt="The House of Polaris fragrance collection in golden light"
-          className="object-contain"
+          className="object-contain object-center"
           sizes="100vw"
           src="/images/collection-trio.png"
         />
         <div className="absolute inset-0 bg-background/20" />
         <div className="relative z-10 flex min-h-[92svh] flex-col items-center justify-center px-6 pt-20 text-center">
           <p className="eyebrow mb-7">Fine fragrance · 30 mL</p>
-          <h1 className="max-w-4xl font-serif text-6xl leading-[0.88] md:text-8xl lg:text-[8.5rem]">
+          <h1 className="max-w-4xl font-serif text-5xl leading-[0.88] sm:text-6xl md:text-8xl lg:text-[8.5rem]">
             A stage for<br /><em>distant lights.</em>
           </h1>
           <p className="mt-8 max-w-md text-sm leading-7 text-foreground/70">
@@ -91,13 +93,14 @@ export default async function HomePage() {
       </section>
 
       <section className="grid min-h-[75svh] md:grid-cols-2">
-        <div className="relative min-h-[60svh] bg-ink">
-          <Image fill alt="House of Polaris bottles arranged on carved wood" className="object-contain" sizes="(min-width: 768px) 50vw, 100vw" src="/images/collection-flatlay.png" />
+        <div className="relative min-h-[60svh] overflow-hidden bg-ink">
+          <Image fill unoptimized alt="" aria-hidden="true" className="scale-110 object-cover opacity-75 blur-2xl" sizes="(min-width: 768px) 50vw, 100vw" src="/images/collection-flatlay.png" />
+          <Image fill unoptimized alt="House of Polaris bottles arranged on carved wood" className="object-contain" sizes="(min-width: 768px) 50vw, 100vw" src="/images/collection-flatlay.png" />
         </div>
         <div className="flex items-center bg-ember px-7 py-20 md:px-16">
           <Reveal className="max-w-lg">
             <p className="eyebrow">Objects from elsewhere</p>
-            <h2 className="mt-6 font-serif text-5xl leading-none md:text-7xl">
+            <h2 className="mt-6 font-serif text-4xl leading-none sm:text-5xl md:text-7xl">
               Each stone,<br /><em>unchosen by chance.</em>
             </h2>
             <p className="mt-7 text-sm leading-7 text-foreground/70">
@@ -115,7 +118,7 @@ export default async function HomePage() {
           <Reveal className="mb-14 flex items-end justify-between gap-5">
             <div>
               <p className="eyebrow">The collection</p>
-              <h2 className="mt-4 font-serif text-5xl md:text-7xl">Three points of light.</h2>
+              <h2 className="mt-4 font-serif text-4xl sm:text-5xl md:text-7xl">Three points of light.</h2>
             </div>
           </Reveal>
           <div className="grid gap-12 md:grid-cols-3 md:gap-5">

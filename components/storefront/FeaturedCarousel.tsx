@@ -29,8 +29,8 @@ export function FeaturedCarousel({ products }: { products: FeaturedProduct[] }) 
   };
 
   return (
-    <section aria-label="Featured fragrances" className="relative overflow-hidden bg-ink">
-      <div className="relative mx-auto h-[82svh] max-h-[900px] min-h-[620px] max-w-[1440px]">
+    <section aria-label="Featured fragrances" className="relative w-full max-w-full overflow-hidden bg-ink">
+      <div className="relative mx-auto h-[82svh] min-h-[560px] w-full max-w-[1440px] md:min-h-[620px] md:max-h-[900px]">
         <AnimatePresence mode="wait">
           <motion.div
             key={product.id}
@@ -42,17 +42,19 @@ export function FeaturedCarousel({ products }: { products: FeaturedProduct[] }) 
           >
             <Image
               fill
+              unoptimized
               alt=""
               aria-hidden="true"
-              className="scale-110 object-cover opacity-30 blur-2xl"
+              className="scale-110 object-cover object-center opacity-80 blur-2xl"
               sizes="100vw"
               src={product.scene}
             />
             <Image
               fill
               priority={activeIndex === 0}
+              unoptimized
               alt={product.imageAlt}
-              className="object-contain"
+              className="object-contain object-center"
               sizes="100vw"
               src={product.scene}
             />
@@ -60,18 +62,18 @@ export function FeaturedCarousel({ products }: { products: FeaturedProduct[] }) 
         </AnimatePresence>
 
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background via-background/5 to-background/5" />
-        <div className="section-shell relative z-10 flex h-full items-end pb-16 md:pb-20">
+        <div className="section-shell relative z-10 flex h-full min-w-0 items-end pb-24 md:pb-20">
           <AnimatePresence mode="wait">
             <motion.div
               key={product.slug}
               animate={{ opacity: 1, y: 0 }}
-              className="max-w-lg"
+              className="min-w-0 max-w-lg"
               exit={{ opacity: 0, y: 12 }}
               initial={{ opacity: 0, y: 18 }}
               transition={{ duration: 0.4 }}
             >
               <p className="eyebrow">{product.eyebrow}</p>
-              <h2 className="mt-4 font-serif text-6xl md:text-8xl">{product.name}</h2>
+              <h2 className="mt-4 break-words font-serif text-5xl leading-[0.9] sm:text-6xl md:text-8xl">{product.name}</h2>
               <p className="mt-5 max-w-md text-sm leading-7 text-foreground/80">
                 {product.description}
               </p>
@@ -85,7 +87,7 @@ export function FeaturedCarousel({ products }: { products: FeaturedProduct[] }) 
           </AnimatePresence>
         </div>
 
-        <div className="absolute bottom-7 right-6 z-20 flex items-center gap-2 md:bottom-16 md:right-10">
+        <div className="absolute bottom-7 right-4 z-20 flex items-center gap-2 md:bottom-16 md:right-10">
           <button
             type="button"
             aria-label="Previous fragrance"

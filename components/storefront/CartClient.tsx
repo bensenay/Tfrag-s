@@ -110,7 +110,7 @@ export function CartClient({ products }: { products: CartProduct[] }) {
             className="grid grid-cols-[92px_1fr] gap-5 py-6 md:grid-cols-[132px_1fr_auto] md:items-center"
           >
             <div className="relative aspect-[4/5] overflow-hidden bg-card">
-              <Image fill alt="" className="object-cover" sizes="132px" src={product.imageUrl} />
+              <Image fill unoptimized alt="" className="object-cover" sizes="132px" src={product.imageUrl} />
             </div>
             <div>
               <Link href={`/shop/${product.slug}`} className="font-serif text-2xl">

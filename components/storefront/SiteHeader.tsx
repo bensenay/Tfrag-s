@@ -17,8 +17,8 @@ export function SiteHeader() {
   );
 
   return (
-    <header className="fixed inset-x-0 top-0 z-40 border-b border-border/45 bg-background/70 backdrop-blur-xl">
-      <div className="mx-auto flex h-20 max-w-[1440px] items-center justify-between px-5 md:px-8">
+    <header className="fixed inset-x-0 top-0 z-40 max-w-full overflow-x-clip border-b border-border/45 bg-background/70 backdrop-blur-xl">
+      <div className="mx-auto flex h-20 min-w-0 max-w-[1440px] items-center justify-between px-4 sm:px-5 md:px-8">
         <nav className="hidden items-center gap-8 md:flex" aria-label="Primary navigation">
           <Link href="/#top" className={navClass} aria-label="Home"><Home className="size-4" /></Link>
           <Link href="/#collection" className={navClass}>Collection</Link>
@@ -36,12 +36,12 @@ export function SiteHeader() {
 
         <Link
           href="/"
-          className="absolute left-1/2 -translate-x-1/2 font-serif text-2xl italic text-foreground md:text-3xl"
+          className="absolute left-1/2 max-w-[48vw] -translate-x-1/2 truncate whitespace-nowrap font-serif text-xl italic text-foreground sm:text-2xl md:max-w-none md:text-3xl"
         >
           House of Polaris
         </Link>
 
-        <div className="flex items-center gap-2 md:gap-6">
+        <div className="flex min-w-0 items-center gap-1 sm:gap-2 md:gap-6">
           <Show when="signed-out">
             <Link href="/sign-in" className={`${navClass} hidden md:inline-flex`}>Account</Link>
             <Link href="/sign-in" className="p-2 text-foreground/70 md:hidden" aria-label="Account">

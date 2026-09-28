@@ -12,6 +12,7 @@ export function ProductCard({ product }: { product: Product }) {
       <div className="product-image-wrap relative aspect-[4/5] overflow-hidden bg-card">
         <Image
           fill
+          unoptimized
           alt={visual.alt}
           className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.025]"
           sizes="(min-width: 768px) 33vw, 100vw"
