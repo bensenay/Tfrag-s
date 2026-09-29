@@ -24,7 +24,7 @@ export default async function ShopPage() {
           </p>
         </Reveal>
         <div className="mt-16 border-b border-border pb-5 text-center text-[10px] uppercase tracking-[0.18em] text-primary">
-          All fragrances · 30 mL Eau de Parfum
+          All fragrances · 30 mL Extrait de Parfum
         </div>
         <div className="mt-12 grid gap-12 md:grid-cols-3 md:gap-5">
           {products.map((product) => <ProductCard key={product.id} product={product} />)}

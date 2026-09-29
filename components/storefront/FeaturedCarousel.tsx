@@ -31,14 +31,14 @@ export function FeaturedCarousel({ products }: { products: FeaturedProduct[] }) 
   return (
     <section aria-label="Featured fragrances" className="relative w-full max-w-full overflow-hidden bg-ink">
       <div className="relative mx-auto h-[82svh] min-h-[560px] w-full max-w-[1440px] md:min-h-[620px] md:max-h-[900px]">
-        <AnimatePresence mode="wait">
+        <AnimatePresence initial={false}>
           <motion.div
             key={product.id}
             animate={{ opacity: 1, scale: 1 }}
             className="absolute inset-0"
             exit={{ opacity: 0, scale: 0.985 }}
             initial={{ opacity: 0, scale: 1.015 }}
-            transition={{ duration: 0.55, ease: "easeOut" }}
+            transition={{ duration: 0.35, ease: "easeOut" }}
           >
             <Image
               fill
@@ -54,7 +54,7 @@ export function FeaturedCarousel({ products }: { products: FeaturedProduct[] }) 
 
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background via-background/5 to-background/5" />
         <div className="section-shell relative z-10 flex h-full min-w-0 items-end pb-24 md:pb-20">
-          <AnimatePresence mode="wait">
+          <AnimatePresence initial={false}>
             <motion.div
               key={product.slug}
               animate={{ opacity: 1, y: 0 }}
@@ -78,22 +78,22 @@ export function FeaturedCarousel({ products }: { products: FeaturedProduct[] }) 
           </AnimatePresence>
         </div>
 
-        <div className="absolute bottom-7 right-4 z-20 flex items-center gap-2 md:bottom-16 md:right-10">
+        <div className="absolute bottom-7 right-4 z-20 flex items-center gap-3 md:bottom-16 md:right-10">
           <button
             type="button"
             aria-label="Previous fragrance"
-            className="grid size-12 place-items-center rounded-full border border-primary/50 bg-background/70 text-primary backdrop-blur-md transition hover:bg-background"
+            className="grid size-14 place-items-center rounded-full border-2 border-primary/80 bg-background/85 text-primary shadow-lg backdrop-blur-md transition hover:scale-105 hover:bg-background md:size-16"
             onClick={() => move(-1)}
           >
-            <ArrowLeft className="size-4" />
+            <ArrowLeft className="size-6" />
           </button>
           <button
             type="button"
             aria-label="Next fragrance"
-            className="grid size-12 place-items-center rounded-full border border-primary/50 bg-background/70 text-primary backdrop-blur-md transition hover:bg-background"
+            className="grid size-14 place-items-center rounded-full border-2 border-primary/80 bg-background/85 text-primary shadow-lg backdrop-blur-md transition hover:scale-105 hover:bg-background md:size-16"
             onClick={() => move(1)}
           >
-            <ArrowRight className="size-4" />
+            <ArrowRight className="size-6" />
           </button>
         </div>
       </div>

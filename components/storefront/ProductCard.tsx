@@ -23,7 +23,7 @@ export function ProductCard({ product }: { product: Product }) {
         <div>
           <h2 className="font-serif text-2xl text-foreground">{product.name}</h2>
           <p className="mt-1 text-[10px] uppercase tracking-[0.14em] text-muted-foreground">
-            30 mL Eau de Parfum
+            30 mL Extrait de Parfum
           </p>
         </div>
         <span className="pt-1 text-sm text-primary">

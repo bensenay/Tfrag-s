@@ -3,8 +3,10 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { AddToCartButton } from "@/components/storefront/AddToCartButton";
 import { Reveal } from "@/components/storefront/Reveal";
+import { getProductContent } from "@/lib/productContent";
 import { prisma } from "@/lib/prisma";
 import { getProductVisual } from "@/lib/productVisuals";
+import { storeContactEmail } from "@/lib/storeConfig";
 
 type ProductPageProps = { params: Promise<{ slug: string }> };
 
@@ -24,6 +26,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
   if (!product) notFound();
 
   const visual = getProductVisual(product.slug);
+  const content = getProductContent(product.slug);
   return (
     <div className="min-w-0 max-w-full overflow-x-clip bg-background">
       <section className="relative min-h-screen overflow-hidden bg-ink">
@@ -54,13 +57,27 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
         <div className="flex min-w-0 items-center px-7 py-24 md:px-20">
           <Reveal className="min-w-0 max-w-xl">
             <p className="eyebrow">The story</p>
-            <h2 className="mt-6 font-serif text-4xl sm:text-5xl md:text-7xl">A world held close.</h2>
+            {content.storyHeading ? (
+              <h2 className="mt-6 font-serif text-4xl sm:text-5xl md:text-7xl">
+                {content.storyHeading}
+              </h2>
+            ) : null}
             <p className="mt-7 text-sm leading-8 text-muted-foreground">{product.description}</p>
+            <p className="mt-6 text-sm leading-8 text-muted-foreground">{content.detailDescription}</p>
+            <p className="mt-6 text-sm italic leading-7 text-muted-foreground">
+              Not sure which to pick? Send me an email, I’ll be happy to chat.{" "}
+              <a
+                className="break-all text-primary underline underline-offset-4"
+                href={`mailto:${storeContactEmail}`}
+              >
+                {storeContactEmail}
+              </a>
+            </p>
             <AddToCartButton productId={product.id} price={product.price} stock={product.stock} />
             <div className="mt-12 divide-y divide-border border-y border-border">
               {product.scentNotes.map((note, index) => (
                 <div key={note} className="flex justify-between gap-5 py-5">
-                  <span className="text-[10px] uppercase tracking-[0.18em] text-primary">Note {String(index + 1).padStart(2, "0")}</span>
+                  <span className="text-[10px] uppercase tracking-[0.18em] text-primary">Top note {String(index + 1).padStart(2, "0")}</span>
                   <span className="text-right text-sm capitalize text-foreground/75">{note}</span>
                 </div>
               ))}

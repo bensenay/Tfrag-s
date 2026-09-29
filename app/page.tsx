@@ -55,13 +55,12 @@ export default async function HomePage() {
           src="/images/collection-trio-wide.png"
         />
         <div className="absolute inset-0 bg-background/20" />
-        <div className="relative z-10 flex min-h-[92svh] flex-col items-center justify-center px-6 pt-20 text-center">
-          <p className="eyebrow mb-7">Fine fragrance · 30 mL</p>
-          <h1 className="max-w-4xl font-serif text-5xl leading-[0.88] sm:text-6xl md:text-8xl lg:text-[8.5rem]">
+        <div className="relative z-10 flex min-h-[92svh] flex-col items-center justify-center px-6 pt-28 text-center md:pt-32">
+          <h1 className="max-w-4xl font-serif text-5xl leading-[0.9] sm:text-6xl md:text-7xl lg:text-[7.5rem]">
             A stage for<br /><em>distant lights.</em>
           </h1>
-          <p className="mt-8 max-w-md text-sm leading-7 text-foreground/70">
-            Three olfactory stories, composed where the frontier meets the night sky.
+          <p className="mt-8 max-w-2xl text-base leading-7 text-foreground/80 md:text-lg md:leading-8">
+            Handmade perfume, for enthusiasts from an enthusiast. Indulge in three unique scents that are <em>out of this world.</em>
           </p>
           <Link href="#collection" className={`${primaryButtonClass} mt-10`}>
             Discover the collection
@@ -72,13 +71,14 @@ export default async function HomePage() {
 
       <section id="house" className="bg-background px-6 py-28 md:py-44">
         <Reveal className="mx-auto max-w-4xl text-center">
-          <p className="eyebrow">The house</p>
+          <p className="text-xs font-medium uppercase tracking-[0.28em] text-primary md:text-sm">The house</p>
           <h2 className="mt-8 font-serif text-4xl leading-tight md:text-7xl">
-            “We bottle the feeling of looking up from a dark, open plain.”
+            “All I want to do is share my passion with the world.”
           </h2>
-          <p className="mx-auto mt-8 max-w-xl text-sm leading-7 text-muted-foreground">
-            House of Polaris creates intimate fragrances for those drawn to mystery, material, and memory. Every bottle is crowned with its own piece of volcanic stone.
+          <p className="mx-auto mt-8 max-w-3xl text-sm leading-7 text-muted-foreground md:text-base md:leading-8">
+            Who am I? I am the new kid on the block, a one-man operation here to compete with the great houses and perfumeries that I have spent so many years basking myself in their creations. Only my goal is not to compete, but to share. To share all that I’ve learnt, through my university studies in physiology of the human body, through my personal journey sniffing everything I could get my hands on, through my countless hours testing my own formulations in my basement. And what I’ve come up with is a brand that I am proud of. Three scents. Uniquely my own. An amalgamation of my life story, each familiar, but completely new. I truly hope you can enjoy them as much as I have.
           </p>
+          <p className="mt-5 font-serif text-2xl italic text-primary">— Thomas</p>
         </Reveal>
       </section>
 
@@ -88,12 +88,12 @@ export default async function HomePage() {
         </div>
         <div className="flex items-center bg-ember px-7 py-20 md:px-16">
           <Reveal className="max-w-lg">
-            <p className="eyebrow">Objects from elsewhere</p>
+            <p className="eyebrow">Handmade perfume, from A to Z.</p>
             <h2 className="mt-6 font-serif text-4xl leading-none sm:text-5xl md:text-7xl">
-              Each stone,<br /><em>unchosen by chance.</em>
+              No two bottles<br /><em>will ever be the same.</em>
             </h2>
             <p className="mt-7 text-sm leading-7 text-foreground/70">
-              Every cap is naturally formed volcanic rock. No two silhouettes repeat; each bottle arrives as its own small terrain.
+              The juice is made in house. The bottles, sealed by my hands. The cap, carefully chiselled by hand-tools. When you hold a bottle, you can be sure that there are no others like it.
             </p>
             <Link href="#collection" className={`${quietButtonClass} mt-9`}>Find yours</Link>
           </Reveal>

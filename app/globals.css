@@ -96,7 +96,7 @@ a {
 }
 
 .image-vignette::after {
-  background: linear-gradient(180deg, color-mix(in oklab, var(--ink) 22%, transparent), transparent 44%, var(--ink) 92%);
+  background: linear-gradient(180deg, color-mix(in oklab, var(--ink) 18%, transparent), transparent 58%, var(--ink) 100%);
   content: "";
   inset: 0;
   pointer-events: none;

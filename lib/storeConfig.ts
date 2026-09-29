@@ -6,6 +6,9 @@ if (configuredCurrency && !/^[a-z]{3}$/.test(configuredCurrency)) {
 
 export const storeCurrency = configuredCurrency ?? "cad";
 export const storeName = process.env.STORE_NAME?.trim() || "House of Polaris";
+export const storeContactEmail =
+  process.env.STORE_CONTACT_EMAIL?.trim() ||
+  "houseofpolarisperfume@gmail.com";
 
 export const formatCurrency = (amountInCents: number) =>
   new Intl.NumberFormat("en-CA", {

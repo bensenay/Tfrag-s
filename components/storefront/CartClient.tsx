@@ -117,7 +117,7 @@ export function CartClient({ products }: { products: CartProduct[] }) {
                 {product.name}
               </Link>
               <p className="mt-2 text-[10px] uppercase tracking-[0.16em] text-muted-foreground">
-                30 mL Eau de Parfum
+                30 mL Extrait de Parfum
               </p>
               <div className="mt-5 flex items-center gap-3">
                 <button type="button" className="p-2" onClick={() => change(productId, -1)} aria-label={`Decrease ${product.name}`}>
