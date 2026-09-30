@@ -5,21 +5,20 @@ import Image from "next/image";
 import { useCallback, useEffect, useState } from "react";
 
 const INTRO_DURATION = 6800;
-const INTRO_STORAGE_KEY = "polaris-intro-seen-v7";
+const INTRO_STORAGE_KEY = "polaris-intro-seen-v8";
 
 export function Entrance() {
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState(true);
   const reducedMotion = useReducedMotion();
 
   useEffect(() => {
     const frame = window.requestAnimationFrame(() => {
       const forceReplay = new URLSearchParams(window.location.search).get("intro") === "1";
-      if (
-        forceReplay ||
-        window.sessionStorage.getItem(INTRO_STORAGE_KEY) !== "true"
-      ) {
-        setVisible(true);
-      }
+      const shouldShow =
+        forceReplay || window.sessionStorage.getItem(INTRO_STORAGE_KEY) !== "true";
+
+      document.documentElement.dataset.intro = shouldShow ? "show" : "skip";
+      setVisible(shouldShow);
     });
 
     return () => window.cancelAnimationFrame(frame);
@@ -46,7 +45,7 @@ export function Entrance() {
         <motion.button
           type="button"
           aria-label="Skip introduction"
-          className="fixed inset-0 z-[100] cursor-pointer overflow-hidden bg-background"
+          className="intro-gate fixed inset-0 z-[100] cursor-pointer overflow-hidden bg-background"
           exit={{ opacity: 0, transition: { duration: 0.75 } }}
           initial={{ opacity: 1 }}
           onClick={dismiss}
@@ -69,21 +68,13 @@ export function Entrance() {
           </motion.div>
 
           <motion.div
-            animate={
-              reducedMotion
-                ? { opacity: 1, scale: 1, y: 0 }
-                : {
-                    opacity: [0, 0, 1, 1],
-                    scale: [0.92, 0.92, 1.025, 1],
-                    y: [22, 22, -3, 0],
-                  }
-            }
+            animate={{ opacity: 1, scale: 1, y: 0 }}
             className="absolute left-1/2 top-[58%] w-[min(76vw,430px)] -translate-x-1/2 -translate-y-1/2"
-            initial={false}
+            initial={{ opacity: 0, scale: 0.92, y: 22 }}
             transition={{
-              duration: reducedMotion ? 0 : 5.9,
+              delay: reducedMotion ? 0.35 : 4.15,
+              duration: reducedMotion ? 0.45 : 0.95,
               ease: [0.22, 1, 0.36, 1],
-              times: reducedMotion ? undefined : [0, 0.68, 0.88, 1],
             }}
           >
             <Image

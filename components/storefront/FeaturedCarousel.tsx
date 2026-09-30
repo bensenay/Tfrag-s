@@ -54,28 +54,25 @@ export function FeaturedCarousel({ products }: { products: FeaturedProduct[] }) 
 
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background via-background/5 to-background/5" />
         <div className="section-shell relative z-10 flex h-full min-w-0 items-end pb-24 md:pb-20">
-          <AnimatePresence initial={false}>
-            <motion.div
-              key={product.slug}
-              animate={{ opacity: 1, y: 0 }}
-              className="min-w-0 max-w-lg"
-              exit={{ opacity: 0, y: 12 }}
-              initial={{ opacity: 0, y: 18 }}
-              transition={{ duration: 0.4 }}
+          <motion.div
+            key={product.slug}
+            animate={{ opacity: 1, y: 0 }}
+            className="min-w-0 max-w-lg"
+            initial={{ opacity: 0, y: 12 }}
+            transition={{ duration: 0.28, ease: "easeOut" }}
+          >
+            <p className="eyebrow">{product.eyebrow}</p>
+            <h2 className="mt-4 break-words font-serif text-5xl leading-[0.9] sm:text-6xl md:text-8xl">{product.name}</h2>
+            <p className="mt-5 max-w-md text-sm leading-7 text-foreground/80">
+              {product.description}
+            </p>
+            <Link
+              href={`/shop/${product.slug}`}
+              className="mt-7 inline-flex items-center gap-3 text-[10px] uppercase tracking-[0.2em] text-primary"
             >
-              <p className="eyebrow">{product.eyebrow}</p>
-              <h2 className="mt-4 break-words font-serif text-5xl leading-[0.9] sm:text-6xl md:text-8xl">{product.name}</h2>
-              <p className="mt-5 max-w-md text-sm leading-7 text-foreground/80">
-                {product.description}
-              </p>
-              <Link
-                href={`/shop/${product.slug}`}
-                className="mt-7 inline-flex items-center gap-3 text-[10px] uppercase tracking-[0.2em] text-primary"
-              >
-                Enter the story <ArrowRight className="size-4" />
-              </Link>
-            </motion.div>
-          </AnimatePresence>
+              Enter the story <ArrowRight className="size-4" />
+            </Link>
+          </motion.div>
         </div>
 
         <div className="absolute bottom-7 right-4 z-20 flex items-center gap-3 md:bottom-16 md:right-10">

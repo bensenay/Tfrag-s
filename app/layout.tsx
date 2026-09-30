@@ -26,6 +26,16 @@ export const metadata: Metadata = {
     "Olfactory stories drawn from wild earth, distant stars, and the hush between them.",
 };
 
+const introGateScript = `
+  try {
+    const forceReplay = new URLSearchParams(window.location.search).get("intro") === "1";
+    const hasSeenIntro = window.sessionStorage.getItem("polaris-intro-seen-v8") === "true";
+    document.documentElement.dataset.intro = forceReplay || !hasSeenIntro ? "show" : "skip";
+  } catch {
+    document.documentElement.dataset.intro = "show";
+  }
+`;
+
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
@@ -33,8 +43,12 @@ export default function RootLayout({
     <ClerkProvider>
       <html
         lang="en"
+        suppressHydrationWarning
         className={`${workSans.variable} ${cormorant.variable} antialiased`}
       >
+        <head>
+          <script dangerouslySetInnerHTML={{ __html: introGateScript }} />
+        </head>
         <body>
           <Entrance />
           <SiteHeader />

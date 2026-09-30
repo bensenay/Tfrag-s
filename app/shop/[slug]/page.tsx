@@ -67,7 +67,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
             <p className="mt-6 text-sm italic leading-7 text-muted-foreground">
               Not sure which to pick? Send me an email, I’ll be happy to chat.{" "}
               <a
-                className="break-all text-primary underline underline-offset-4"
+                className="inline-block whitespace-nowrap text-[0.78rem] text-primary underline underline-offset-4 sm:text-sm"
                 href={`mailto:${storeContactEmail}`}
               >
                 {storeContactEmail}

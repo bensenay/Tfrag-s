@@ -126,6 +126,14 @@ a {
   mix-blend-mode: screen;
 }
 
+.intro-gate {
+  display: none;
+}
+
+html[data-intro="show"] .intro-gate {
+  display: block;
+}
+
 @media (min-width: 768px) {
   .section-shell {
     padding-inline: 2rem;
