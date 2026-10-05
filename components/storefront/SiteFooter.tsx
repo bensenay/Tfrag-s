@@ -30,7 +30,11 @@ export function SiteFooter() {
       </div>
       <div className="mx-auto mt-20 flex max-w-7xl flex-col justify-between gap-3 text-[9px] uppercase tracking-[0.25em] text-muted-foreground md:flex-row">
         <span>© 2026 House of Polaris</span>
-        <span>Made beneath open skies</span>
+        <div className="flex flex-wrap gap-x-6 gap-y-3">
+          <Link className="transition-colors hover:text-primary" href="/privacy">Privacy</Link>
+          <Link className="transition-colors hover:text-primary" href="/terms">Terms</Link>
+          <span>Made beneath open skies</span>
+        </div>
       </div>
     </footer>
   );
