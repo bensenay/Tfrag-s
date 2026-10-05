@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import type { ReactNode } from "react";
 
 const policyEmail = "Houseofpolarisperfume@gmail.com";
 
@@ -7,14 +6,6 @@ export const metadata: Metadata = {
   title: "Terms & Conditions",
   description: "Terms for purchasing from the House of Polaris online store.",
 };
-
-function PolicyMarker({ children }: { children: ReactNode }) {
-  return (
-    <span className="rounded-sm border border-primary/40 bg-primary/5 px-2 py-1 text-primary">
-      [Owner review: {children}]
-    </span>
-  );
-}
 
 export default function TermsPage() {
   return (
@@ -30,10 +21,6 @@ export default function TermsPage() {
             These terms apply when you use the House of Polaris website or purchase fragrance
             products from our Quebec-based online store.
           </p>
-          <div className="mt-8 border border-primary/30 bg-card p-5 text-sm leading-7 text-foreground/75">
-            Shipping, return, and refund details marked “Owner review” are placeholders and must
-            be confirmed before the store launches publicly.
-          </div>
         </header>
 
         <div className="space-y-12 py-12 text-sm leading-8 text-muted-foreground md:text-base">
@@ -61,11 +48,13 @@ export default function TermsPage() {
             <h2 className="font-serif text-3xl text-foreground">Shipping</h2>
             <div className="mt-4 space-y-4">
               <p>
-                <PolicyMarker>confirm shipping destinations, rates, carriers, handling time, and estimated delivery windows</PolicyMarker>
+                We currently ship to addresses in Canada and the United States only. A flat
+                shipping rate of $13 CAD applies to every order. Orders ship within 3–8 days.
               </p>
               <p>
-                Delivery estimates are not guarantees. Customers are responsible for providing a
-                complete and accurate delivery address. For shipping questions, contact{" "}
+                Shipping and delivery estimates are not guarantees. Customers are responsible
+                for providing a complete and accurate delivery address. For shipping questions,
+                contact{" "}
                 <a
                   className="inline-block whitespace-nowrap text-primary underline underline-offset-4"
                   href={`mailto:${policyEmail}`}
@@ -81,18 +70,13 @@ export default function TermsPage() {
             <h2 className="font-serif text-3xl text-foreground">Returns and exchanges</h2>
             <div className="mt-4 space-y-4">
               <p>
-                <PolicyMarker>confirm the return window, eligibility conditions, whether opened fragrance can be returned, and who pays return shipping</PolicyMarker>
+                All purchases are final sale. We do not accept returns or exchanges, including
+                for scent preference, except where required by law or as described below for
+                damaged or incorrect orders.
               </p>
               <p>
-                Before returning anything, email{" "}
-                <a
-                  className="inline-block whitespace-nowrap text-primary underline underline-offset-4"
-                  href={`mailto:${policyEmail}`}
-                >
-                  [{policyEmail}]
-                </a>{" "}
-                with your order number and the reason for the request. Unauthorized returns may
-                not be accepted.
+                We review special cases individually. This does not create a general right to a
+                return, exchange, or refund outside the rules stated here.
               </p>
             </div>
           </section>
@@ -101,19 +85,20 @@ export default function TermsPage() {
             <h2 className="font-serif text-3xl text-foreground">Refunds and damaged orders</h2>
             <div className="mt-4 space-y-4">
               <p>
-                <PolicyMarker>confirm refund timing, original-shipping treatment, damaged-order evidence requirements, and lost-package procedure</PolicyMarker>
+                If an order arrives damaged or incorrect, contact us within 7 days of delivery
+                with a photo and your order number, and we’ll replace or refund it.
               </p>
               <p>
-                Approved refunds will be returned to the original payment method. Financial
-                institutions may require additional processing time. If an order arrives damaged
-                or incorrect, contact{" "}
+                If tracking shows no delivery after 10 days, contact us and we’ll investigate
+                with the carrier. Send damaged-order and lost-package requests to{" "}
                 <a
                   className="inline-block whitespace-nowrap text-primary underline underline-offset-4"
                   href={`mailto:${policyEmail}`}
                 >
                   [{policyEmail}]
-                </a>{" "}
-                promptly with the order number and supporting photographs.
+                </a>
+                . Approved refunds will be returned to the original payment method. Financial
+                institutions may require additional processing time.
               </p>
             </div>
           </section>
