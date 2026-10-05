@@ -85,8 +85,8 @@ export function SiteHeader() {
               <Link href="/#top" onClick={() => setOpen(false)}>Home</Link>
               <Link href="/#collection" onClick={() => setOpen(false)}>Collection</Link>
               <Link href="/#house" onClick={() => setOpen(false)}>The House</Link>
-              <Link href="/account" onClick={() => setOpen(false)}>Account</Link>
-              <Link href="/cart" onClick={() => setOpen(false)}>Cart ({count})</Link>
+              <Link href="/privacy" onClick={() => setOpen(false)}>Privacy</Link>
+              <Link href="/terms" onClick={() => setOpen(false)}>Terms</Link>
             </nav>
           </motion.div>
         ) : null}
