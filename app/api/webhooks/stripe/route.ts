@@ -1,5 +1,7 @@
-import { sendOrderConfirmation } from "@/lib/email";
-import { prisma } from "@/lib/prisma";
+import {
+  cancelPendingCheckout,
+  settlePaidCheckout,
+} from "@/lib/orderFulfillment";
 import { stripe } from "@/lib/stripe";
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
@@ -58,7 +60,10 @@ export async function POST(request: Request) {
     );
   }
 
-  if (event.type === "checkout.session.completed") {
+  if (
+    event.type === "checkout.session.completed" ||
+    event.type === "checkout.session.async_payment_succeeded"
+  ) {
     const session = event.data.object;
     const orderId = session.metadata?.orderId;
 
@@ -73,32 +78,27 @@ export async function POST(request: Request) {
       return NextResponse.json({ received: true });
     }
 
-    const order = await prisma.order.update({
-      where: {
-        id: orderId,
-        stripeSessionId: session.id,
-      },
-      data: {
-        status: "PAID",
-        customerEmail:
-          session.customer_details?.email ?? session.customer_email ?? "",
-        customerName: session.customer_details?.name ?? "",
-        shippingAddress: formatAddress(
-          session.collected_information?.shipping_details?.address,
-          session.collected_information?.shipping_details?.name ??
+    await settlePaidCheckout({
+      orderId,
+      stripeSessionId: session.id,
+      customerEmail:
+        session.customer_details?.email ?? session.customer_email ?? "",
+      customerName: session.customer_details?.name ?? "",
+      shippingAddress: formatAddress(
+        session.collected_information?.shipping_details?.address,
+        session.collected_information?.shipping_details?.name ??
           session.customer_details?.name,
-        ),
-      },
-      include: {
-        items: {
-          include: {
-            product: true,
-          },
-        },
-      },
+      ),
     });
+  }
 
-    await sendOrderConfirmation(order);
+  if (event.type === "checkout.session.expired") {
+    const session = event.data.object;
+    const orderId = session.metadata?.orderId;
+
+    if (orderId) {
+      await cancelPendingCheckout(orderId, session.id);
+    }
   }
 
   return NextResponse.json({ received: true });

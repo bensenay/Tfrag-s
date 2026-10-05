@@ -22,16 +22,20 @@ model Product {
 }
 
 model Order {
-  id              String      @id @default(cuid())
-  customerEmail   String
-  customerName    String
-  status          OrderStatus @default(PENDING)
-  totalAmount     Int
-  stripeSessionId String?     @unique
-  shippingAddress String
-  createdAt       DateTime    @default(now())
-  updatedAt       DateTime    @updatedAt
-  items           OrderItem[]
+  id                      String      @id @default(cuid())
+  customerEmail           String
+  customerName            String
+  status                  OrderStatus @default(PENDING)
+  totalAmount             Int
+  checkoutKey             String?     @unique
+  stripeSessionId         String?     @unique
+  stripeCheckoutUrl       String?
+  shippingAddress         String
+  inventoryCommittedAt    DateTime?
+  confirmationEmailSentAt DateTime?
+  createdAt               DateTime    @default(now())
+  updatedAt               DateTime    @updatedAt
+  items                   OrderItem[]
 }
 
 model OrderItem {

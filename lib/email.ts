@@ -1,11 +1,11 @@
 import type { Prisma } from "@prisma/client";
 import { Resend } from "resend";
+import { formatCurrency, storeName } from "@/lib/storeConfig";
 
 const resendApiKey = process.env.RESEND_API_KEY;
-const fromEmail =
-  process.env.RESEND_FROM_EMAIL ?? "Tfrag <onboarding@resend.dev>";
+const fromEmail = process.env.RESEND_FROM_EMAIL?.trim();
 
-export const hasResendApiKey = Boolean(resendApiKey);
+export const hasResendConfig = Boolean(resendApiKey && fromEmail);
 
 export const resend = new Resend(resendApiKey ?? "re_missing");
 
@@ -18,14 +18,6 @@ type OrderWithItems = Prisma.OrderGetPayload<{
     };
   };
 }>;
-
-const currencyFormatter = new Intl.NumberFormat("en-US", {
-  currency: "USD",
-  style: "currency",
-});
-
-const formatCurrency = (amountInCents: number) =>
-  currencyFormatter.format(amountInCents / 100);
 
 const escapeHtml = (value: string) =>
   value
@@ -102,8 +94,10 @@ const buildHtmlEmail = (order: OrderWithItems) => {
 };
 
 export const sendOrderConfirmation = async (order: OrderWithItems) => {
-  if (!hasResendApiKey) {
-    throw new Error("Missing RESEND_API_KEY environment variable");
+  if (!resendApiKey || !fromEmail) {
+    throw new Error(
+      "Missing RESEND_API_KEY or RESEND_FROM_EMAIL environment variable",
+    );
   }
 
   if (!order.customerEmail) {
@@ -114,7 +108,7 @@ export const sendOrderConfirmation = async (order: OrderWithItems) => {
     {
       from: fromEmail,
       to: order.customerEmail,
-      subject: `Order confirmation ${order.id}`,
+      subject: `${storeName} order confirmation ${order.id}`,
       html: buildHtmlEmail(order),
       text: buildTextEmail(order),
     },

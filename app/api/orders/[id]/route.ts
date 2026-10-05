@@ -90,7 +90,10 @@ export async function PATCH(
       },
     });
 
-    return NextResponse.json({ order });
+    return NextResponse.json(
+      { order },
+      { headers: rateLimit.headers },
+    );
   } catch (error) {
     if (
       typeof error === "object" &&

@@ -104,7 +104,10 @@ export async function PATCH(
       data: parsed.data,
     });
 
-    return NextResponse.json({ product });
+    return NextResponse.json(
+      { product },
+      { headers: rateLimit.headers },
+    );
   } catch (error) {
     if (
       typeof error === "object" &&
@@ -169,7 +172,10 @@ export async function DELETE(
       },
     });
 
-    return new NextResponse(null, { status: 204 });
+    return new NextResponse(null, {
+      status: 204,
+      headers: rateLimit.headers,
+    });
   } catch (error) {
     if (
       typeof error === "object" &&

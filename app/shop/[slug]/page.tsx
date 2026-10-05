@@ -1,74 +1,90 @@
-import { prisma } from '@/lib/prisma'
-import { notFound } from 'next/navigation'
-import Image from 'next/image'
+import type { Metadata } from "next";
+import Image from "next/image";
+import { notFound } from "next/navigation";
+import { AddToCartButton } from "@/components/storefront/AddToCartButton";
+import { Reveal } from "@/components/storefront/Reveal";
+import { getProductContent } from "@/lib/productContent";
+import { prisma } from "@/lib/prisma";
+import { getProductVisual } from "@/lib/productVisuals";
+import { storeContactEmail } from "@/lib/storeConfig";
 
-export default async function ProductDetailPage({
-  params,
-}: {
-  params: Promise<{ slug: string }>
-}) {
-  const { slug } = await params
+type ProductPageProps = { params: Promise<{ slug: string }> };
 
-  const product = await prisma.product.findUnique({
-    where: { slug },
-  })
+export async function generateMetadata({ params }: ProductPageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const product = await prisma.product.findUnique({ where: { slug } });
 
-  if (!product) {
-    notFound()
-  }
+  return product
+    ? { title: product.name, description: product.description }
+    : { title: "Fragrance Not Found" };
+}
 
+export default async function ProductDetailPage({ params }: ProductPageProps) {
+  const { slug } = await params;
+  const product = await prisma.product.findUnique({ where: { slug } });
+
+  if (!product) notFound();
+
+  const visual = getProductVisual(product.slug);
+  const content = getProductContent(product.slug);
   return (
-    <main className="max-w-5xl mx-auto px-4 py-12">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-        <div className="relative w-full aspect-square bg-gray-100 rounded-lg overflow-hidden">
-          <Image
-            src={product.imageUrl}
-            alt={product.name}
-            fill
-            className="object-cover"
-          />
+    <div className="min-w-0 max-w-full overflow-x-clip bg-background">
+      <section className="relative min-h-screen overflow-hidden bg-ink">
+        <Image
+          fill
+          priority
+          unoptimized
+          alt={visual.alt}
+          className="object-cover object-center"
+          sizes="100vw"
+          src={visual.scene}
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/10 to-background/20 md:bg-gradient-to-r md:from-background/80 md:via-background/10 md:to-background/35" />
+        <div className="section-shell relative z-10 flex min-h-screen min-w-0 items-end pb-16 pt-32 md:pb-20">
+          <Reveal className="min-w-0 max-w-xl">
+            <p className="eyebrow">{visual.eyebrow}</p>
+            <h1 className="mt-5 max-w-2xl break-words font-serif text-5xl leading-[0.9] sm:text-6xl md:text-8xl">{product.name}</h1>
+          </Reveal>
         </div>
+      </section>
 
-        <div>
-          <h1 className="text-3xl font-semibold">{product.name}</h1>
-          <p className="text-2xl mt-2 font-medium">
-            ${(product.price / 100).toFixed(2)}
-          </p>
-
-          <p className="mt-6 text-gray-600 leading-relaxed">
-            {product.description}
-          </p>
-
-          <div className="mt-6">
-            <h2 className="text-sm font-medium text-gray-500 uppercase tracking-wide">
-              Scent Notes
-            </h2>
-            <div className="flex flex-wrap gap-2 mt-2">
-              {product.scentNotes.map((note) => (
-                <span
-                  key={note}
-                  className="px-3 py-1 bg-gray-100 rounded-full text-sm"
-                >
-                  {note}
-                </span>
+      <section className="grid min-w-0 min-h-[80svh] md:grid-cols-2">
+        <div className="relative flex min-h-[65svh] min-w-0 items-center justify-center bg-white p-2 md:min-h-[80svh] md:p-6">
+          <Reveal className="relative h-[62svh] w-full md:h-[74svh]">
+            <Image fill unoptimized alt={`${product.name} fragrance bottle`} className="object-contain" sizes="(min-width: 768px) 50vw, 100vw" src={product.imageUrl} />
+          </Reveal>
+        </div>
+        <div className="flex min-w-0 items-center px-7 py-24 md:px-20">
+          <Reveal className="min-w-0 max-w-xl">
+            <p className="eyebrow">The story</p>
+            {content.storyHeading ? (
+              <h2 className="mt-6 font-serif text-4xl sm:text-5xl md:text-7xl">
+                {content.storyHeading}
+              </h2>
+            ) : null}
+            <p className="mt-7 text-sm leading-8 text-muted-foreground">{product.description}</p>
+            <p className="mt-6 text-sm leading-8 text-muted-foreground">{content.detailDescription}</p>
+            <p className="mt-6 text-sm italic leading-7 text-muted-foreground">
+              Not sure which to pick? Send me an email, I’ll be happy to chat.{" "}
+              <a
+                className="inline-block whitespace-nowrap text-[0.78rem] text-primary underline underline-offset-4 sm:text-sm"
+                href={`mailto:${storeContactEmail}`}
+              >
+                {storeContactEmail}
+              </a>
+            </p>
+            <AddToCartButton productId={product.id} price={product.price} stock={product.stock} />
+            <div className="mt-12 divide-y divide-border border-y border-border">
+              {product.scentNotes.map((note, index) => (
+                <div key={note} className="flex justify-between gap-5 py-5">
+                  <span className="text-[10px] uppercase tracking-[0.18em] text-primary">Top note {String(index + 1).padStart(2, "0")}</span>
+                  <span className="text-right text-sm capitalize text-foreground/75">{note}</span>
+                </div>
               ))}
             </div>
-          </div>
-
-          <p className="mt-4 text-sm text-gray-500">
-            {product.stock > 0
-              ? `${product.stock} in stock`
-              : 'Out of stock'}
-          </p>
-
-          <button
-            disabled={product.stock === 0}
-            className="mt-8 w-full bg-black text-white py-3 rounded-lg font-medium hover:bg-gray-800 transition-colors disabled:bg-gray-300 disabled:cursor-not-allowed"
-          >
-            Add to Cart
-          </button>
+          </Reveal>
         </div>
-      </div>
-    </main>
-  )
+      </section>
+    </div>
+  );
 }
