@@ -22,8 +22,7 @@ export const metadata: Metadata = {
     default: "House of Polaris",
     template: "%s — House of Polaris",
   },
-  description:
-    "Olfactory stories drawn from wild earth, distant stars, and the hush between them.",
+  description: "Independent niche perfumes, handcrafted in Quebec.",
 };
 
 const introGateScript = `
